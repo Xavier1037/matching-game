@@ -3,14 +3,16 @@ import CardFrontBack from "../../components/CardFrontBack";
 import cards from "./data.js"
 
 function BoardGame(amountCards){
-    const flipAndHideCards = ($cardsActive) => {
-        $cardsActive.forEach((card) => card.classList.remove("-active"));       
-    }
-
+    
     const swapPlayer = () => {
         const $arrowDown = document.querySelector('.arrow-down');
         const currentPlayer = $arrowDown.getAttribute('data-currentplayer');
         $arrowDown.setAttribute('data-currentplayer',currentPlayer == 1 ? 2 : 1);
+    }
+    const pointerPlayer = () => {
+        const $PlayerScorre = document.querySelector('.player-score');
+        const currentPlayer = $PlayerScorre.getAttribute('data-points');
+        $PlayerScorre.setAttribute('data-points',currentPlayer == 1 ? 2 : 1);
     }
 
     window.boardGame = {};
@@ -20,15 +22,17 @@ function BoardGame(amountCards){
         const $cardsActive = $boardGame.querySelectorAll(".card-front-back.-active");
         if($cardsActive.length >= 2){
             setTimeout(() => {
-                flipAndHideCards($cardsActive)
                 swapPlayer()
+                pointerPlayer()
             }, 1000);
-        }
+        } 
     }
-    
-   
-    const htmlCardsList = cards.map((card) => CardFrontBack(card.icon, card.altIcon));
+ 
+    const htmlCardsList = cards.map((card) => CardFrontBack(card.dataType,card.icon, card.altIcon));
     const $htmlCards = htmlCardsList.join('');
+    
+
+    
 
     return /*html*/`
         <section class="board-game" onClick="boardGame.handleClick()">
@@ -41,4 +45,9 @@ export default BoardGame;
 
 //amount número de;
 //const $htmlContent = $htmlCardFrontBack.repeat(amountCards);repeat usado para repetir uma string;
-  //map pecorre a lista
+//map pecorre a lista
+
+/*const flipAndHideCards = ($cardsActive) => {
+        $cardsActive.forEach((card) => card.classList.remove("-active"));       
+    }*/
+ /*flipAndHideCards($cardsActive)*/
