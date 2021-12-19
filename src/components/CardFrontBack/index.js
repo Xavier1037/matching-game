@@ -10,6 +10,7 @@ function CardFrontBack( dataType, icon, altIcon){
          const flipCard = ($cardFrontBack) => {
             if (lockBoard) return;
             if ($cardFrontBack === secondCard) return;
+            
             $cardFrontBack.classList.add('-active');
        
           if (!hasFlippedCard) {
@@ -27,8 +28,9 @@ function CardFrontBack( dataType, icon, altIcon){
         }
               
         const disableCards = () => {
-            firstCard.classList.add('-active');
-            secondCard.classList.add('-active');
+            $cardFrontBack.removeEventListener('click',handleclick);
+            firstCard.removeEventListener('click',handleclick);
+            /*secondCard.classList.add('-active');*/
             resetBoard();
         }
             
@@ -50,8 +52,16 @@ function CardFrontBack( dataType, icon, altIcon){
     window.cardFrontBack.handleclick = (event) =>{
         const $origin = event.target;
         const $cardFrontBack = $origin.closest('.card-front-back');
+        const $FrontBack = document.querySelector('.card-front-back');
+        
+        const $cardsActive = $FrontBack.querySelectorAll(".card-front-back.-active");
+        if($cardsActive.length >= 2){
+            setTimeout(() => {
+             
+                
+            }, 1000);
+        } 
         flipCard($cardFrontBack)
-
     }
 
     return /*html*/`
