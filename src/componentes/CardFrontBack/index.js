@@ -3,9 +3,9 @@ import "./style.css";
 
 function CardFrontBack( dataType, icon, altIcon){
 
-    let hasFlippedCard = false;
-    let lockBoard = false;
-    let firstCard, secondCard;
+    Const hasFlippedCard = false;
+    Const lockBoard = false;
+    Const firstCard, secondCard;
        
          const flipCard = ($cardFrontBack) => {
             if (lockBoard) return;
@@ -22,7 +22,7 @@ function CardFrontBack( dataType, icon, altIcon){
           checkForMatch();
          }
          const checkForMatch = () => {
-            let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+            Const isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
             isMatch ? disableCards() : unflipCards();
         }
               
