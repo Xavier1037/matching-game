@@ -26,7 +26,7 @@ function BoardGame(amountCards){
         }
     }
     
-    const $htmlCardFrontBack = CardFrontBack(cards[0].icon, cards[0].altIcon);
+   
     const htmlCardsList = cards.map((card) => CardFrontBack(card.icon, card.altIcon));
     const $htmlCards = htmlCardsList.join('');
 

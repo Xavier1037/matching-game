@@ -5,10 +5,10 @@ function CardFrontBack( icon, altIcon){
 
     window.cardFrontBack = {}
     window.cardFrontBack.handleclick = (event) =>{
-        const $origin = event.target;//ver o atributo que esta sendo chamado.
+        const $origin = event.target;
         const $cardFrontBack = $origin.closest('.card-front-back');
 
-        $cardFrontBack.classList.toggle('-active');//ver ser tem uma serta class => se tiver ela retira e se não tiver ela adiciona.
+        $cardFrontBack.classList.toggle('-active');
     }
 
     return /*html*/`
@@ -24,3 +24,6 @@ function CardFrontBack( icon, altIcon){
 }
 
 export default CardFrontBack;
+
+//ver o atributo que esta sendo chamado.
+//ver ser tem uma serta class => se tiver ela retira e se não tiver ela adiciona.
