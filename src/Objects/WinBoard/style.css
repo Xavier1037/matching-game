@@ -1,0 +1,22 @@
+.win-board{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-evenly;
+    margin-left:auto;
+    box-sizing: border-box;
+    width: 280px;
+    height: 216px;
+    background-color: var(--color-pomb-and-power);
+    border: 4px solid var(--color-eggshell);
+}
+
+.start-button{
+    width: 240px;
+    height: 40px;
+    background-color: var(--color-fiery-rose);
+    border: 3px solid var(--color-eggshell);
+    color:var(--color-floral-white);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 18px;
+}

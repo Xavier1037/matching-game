@@ -77,3 +77,5 @@ export default CardFrontBack;
                   card.style.order = ramdomPos;
                 });
               }; tentativa de randomizar as cartas*/
+/*import PlayerScore from "../PlayerScore";*/
+/*PlayerScore(2)*/

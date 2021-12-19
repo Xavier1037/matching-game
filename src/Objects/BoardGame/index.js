@@ -9,12 +9,7 @@ function BoardGame(amountCards){
         const currentPlayer = $arrowDown.getAttribute('data-currentplayer');
         $arrowDown.setAttribute('data-currentplayer',currentPlayer == 1 ? 2 : 1);
     }
-    const pointerPlayer = () => {
-        const $PlayerScorre = document.querySelector('.player-score');
-        const currentPlayer = $PlayerScorre.getAttribute('data-points');
-        $PlayerScorre.setAttribute('data-points',currentPlayer == 1 ? 2 : 1);
-    }
-
+    
     window.boardGame = {};
     window.boardGame.handleClick = () => {
         const $boardGame = document.querySelector('.board-game');
@@ -23,7 +18,6 @@ function BoardGame(amountCards){
         if($cardsActive.length >= 2){
             setTimeout(() => {
                 swapPlayer()
-                pointerPlayer()
             }, 1000);
         } 
     }
@@ -51,3 +45,8 @@ export default BoardGame;
         $cardsActive.forEach((card) => card.classList.remove("-active"));       
     }*/
  /*flipAndHideCards($cardsActive)*/
+ /*const pointerPlayer = () => {
+        const $PlayerScorre = document.querySelector('.player-score');
+        const currentPlayer = $PlayerScorre.getAttribute('data-points');
+        $PlayerScorre.setAttribute('data-points',currentPlayer == 1 ? 2 : 1);
+    }*/
