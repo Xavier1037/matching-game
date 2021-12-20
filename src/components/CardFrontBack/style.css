@@ -15,6 +15,11 @@
     transform:rotateY(180deg);
 }
 
+.card-front-back:active {
+    transform: scale(0.97);
+    transition: transform .2s;
+  }
+
 .card-front-back > .card{
     position:absolute;
     backface-visibility:hidden;

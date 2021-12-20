@@ -3,69 +3,76 @@ import "./style.css";
 
 function CardFrontBack( dataType, icon, altIcon){
 
-    let hasFlippedCard = false;
-    let lockBoard = false;
-    let firstCard, secondCard;
-       
-         const flipCard = ($cardFrontBack) => {
-            if (lockBoard) return;
-            if ($cardFrontBack === secondCard) return;
+        let hasFlippedCard = false;
+        let firstCard, secondCard;
+        let lockBoard = false;
+
+        const flipCard = ($FrontBack) => {
+            const that = $FrontBack.closest('.card-front-back');
+            if(lockBoard)return;
+            if (that === firstCard) return;
+           that.classList.add("-active");
             
-            $cardFrontBack.classList.add('-active');
-       
-          if (!hasFlippedCard) {
-            hasFlippedCard = true;
-            firstCard = $cardFrontBack;
-            return;
+           if(!hasFlippedCard){
+               hasFlippedCard = true;
+               firstCard = that;
+               return;
+           }
+
+           secondCard = that;
+          
+
+           checkForMatch();
+        }
+        function checkForMatch() {
+            if (firstCard.dataset.framework === secondCard.dataset.framework) {
+              disableCards();
+              return;
+            }
+         
+            unflipCards();
           }
-            secondCard = $cardFrontBack;
-
-          checkForMatch();
-         }
-         const checkForMatch = () => {
-            let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
-            isMatch ? disableCards() : unflipCards();
-        }
-              
-        const disableCards = () => {
-            $cardFrontBack.removeEventListener('click',handleclick);
-            firstCard.removeEventListener('click',handleclick);
-            /*secondCard.classList.add('-active');*/
+         
+          function disableCards() {
+            firstCard.removeEventListener('click', cardFrontBack.handleclick());
+            secondCard.removeEventListener('click',cardFrontBack.handleclick());
             resetBoard();
-        }
-            
-         const unflipCards = () => {
-             lockBoard = true;
+          }
+         
+          function unflipCards() {
+              lockBoard = true;
             setTimeout(() => {
-                firstCard.classList.remove('-active');
-                secondCard.classList.remove('-active');
-
-                resetBoard();
-            }, 800);
-        }
-        const resetBoard = () => {
+              firstCard.classList.remove('-active');
+              secondCard.classList.remove('-active');
+              resetBoard();
+            }, 1500);
+          }
+          function resetBoard() {
             [hasFlippedCard, lockBoard] = [false, false];
             [firstCard, secondCard] = [null, null];
-        }
+          }
+    
+    
 
     window.cardFrontBack = {}
-    window.cardFrontBack.handleclick = (event) =>{
-        const $origin = event.target;
-        const $cardFrontBack = $origin.closest('.card-front-back');
+    window.cardFrontBack.handleclick = () =>{
+        /*const $origin = event.target;*/
+        /*const $cardFrontBack = $origin.closest('.card-front-back');*/
         const $FrontBack = document.querySelector('.card-front-back');
         
-        const $cardsActive = $FrontBack.querySelectorAll(".card-front-back.-active");
+        const $cardsActive = document.querySelectorAll(".card-front-back.-active");
+
         if($cardsActive.length >= 2){
             setTimeout(() => {
              
                 
             }, 1000);
         } 
-        flipCard($cardFrontBack)
+        flipCard($FrontBack)
     }
 
     return /*html*/`
-    <article class="card-front-back" data-framework="${dataType}" onClick="cardFrontBack.handleclick(event)">
+    <article class="card-front-back" data-framework="${dataType}" onClick="cardFrontBack.handleclick()">
         <div class="card -front">
             ${CardGame()}
         </div>
