@@ -20,6 +20,8 @@ function BoardGame(amountCards){
                 swapPlayer()
             }, 1000);
         } 
+        /***********************************************************************/
+        
     }
  
     const htmlCardsList = cards.map((card) => CardFrontBack(card.dataType,card.icon, card.altIcon));
